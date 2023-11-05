@@ -13,7 +13,6 @@ function setTimeAndQuestions() {
   var timerInterval = setInterval(function () {
     timeLeft--;
     timer.textContent = timeLeft;
-
     if (timeLeft === 0) {
       clearInterval(timerInterval);
     }
@@ -21,8 +20,10 @@ function setTimeAndQuestions() {
 
   start.setAttribute("style", "display: none");
   hiddenQuestions.classList.remove("hide");
+  
   for (var i = 0; i < questions.length; i++) {
     askQuestions.textContent = questions[i].question;
+    
     // for loop for answer array //
     var data = questions[i].answers;
     for (var j = 0; j < data.length; j++) {
@@ -30,7 +31,7 @@ function setTimeAndQuestions() {
       answerButton.textContent = j + 1 + ". " + data[j];
       choices.appendChild(answerButton);
 
-      answerButton.setAttribute("style", )
+    
     }
   
   }
