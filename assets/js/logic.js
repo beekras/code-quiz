@@ -1,70 +1,59 @@
-
- // 1) select HTML elements
+// 1) select HTML elements
 var button = document.getElementById("start");
 var timer = document.getElementById("time");
-
 var askQuestions = document.getElementById("question-title");
 var choices = document.querySelector(".choices");
-
-var start = document.querySelectorAll(".start");
+var start = document.querySelector(".start");
+var hiddenQuestions = document.getElementById("questions");
 
 // WHEN I click the start button THEN a timer starts and I am presented with a question
-var timeLeft = 75
+var timeLeft = 75;
 
-function setTime() {
+function setTimeAndQuestions() {
+  var timerInterval = setInterval(function () {
+    timeLeft--;
+    timer.textContent = timeLeft;
 
-    var timerInterval = setInterval(function(){
-      timeLeft--;
-      timer.textContent = timeLeft;
+    if (timeLeft === 0) {
+      clearInterval(timerInterval);
+    }
+  }, 1000)
 
-      if (timeLeft === 0) {
-        clearInterval(timerInterval);
-      }
-    }, 1000);
-}
-// setTime only when start quiz button is pressed
-button.addEventListener("click", setTime)
+  start.setAttribute("style", "display: none");
+  hiddenQuestions.classList.remove("hide");
+  for (var i = 0; i < questions.length; i++) {
+    askQuestions.textContent = questions[i].question;
+    // for loop for answer array //
+    var data = questions[i].answers;
+    for (var j = 0; j < data.length; j++) {
+      const answerButton = document.createElement("button");
+      answerButton.textContent = j + 1 + ". " + data[j];
+      choices.appendChild(answerButton);
 
-// presented with a question when clicked 
-
-function theQuestions() {
-// if (button.addEventListener = ("click")) {
-    for (var i = 0; i < questions.length; i++) {
-       var firstArray =  questions[0];
-   
+      answerButton.setAttribute("style", )
     }
   
-   
-}
+  }
+console.log(orderedList)
+ 
+};
+// setTime only when start quiz button is pressed
+button.addEventListener("click", setTimeAndQuestions);
 
- console.log(askQuestions)
 
-button.addEventListener = ("click", theQuestions);
 
 
 // iterate over the list of questions
-    // if a user clicked on an answer
-    // check the text of the answer (or maybe some data property)
-    // compare that value to the correct answer
-    // if (the thing the user answered is correct)
-    //    display correct!
-    // else
-    //    display incorrect
-    //    subtract time
-    // console.log(dansQuestions);
-    // localStorage.setItem("testItem", "abcdefghijkl");
-
-
-
-
-
-
-
-
-
-
-
-
+// if a user clicked on an answer
+// check the text of the answer (or maybe some data property)
+// compare that value to the correct answer
+// if (the thing the user answered is correct)
+//    display correct!
+// else
+//    display incorrect
+//    subtract time
+// console.log(dansQuestions);
+// localStorage.setItem("testItem", "abcdefghijkl");
 
 // WHEN I answer a question
 // THEN I am presented with another question
