@@ -22,11 +22,7 @@ function setTimeAndQuestions() {
   hiddenQuestions.classList.remove("hide");
   // first question
   var index = 0;
-  // questions[i].question
-  // click on button to bring up next question
-  // for (var i = 0; i < questions.length; i++) {
   askQuestions.textContent = questions[index].question;
-
   // for loop for answer array //
   var data = questions[index].answers;
   for (var j = 0; j < data.length; j++) {
@@ -41,15 +37,29 @@ function setTimeAndQuestions() {
       return;
     }
     index = index + 1;
-    console.log(index);
     // change the text content and answers to the next question
     askQuestions.textContent = questions[index].question;
     data = questions[index].answers;
-    var allButtons = document.querySelectorAll("button"); // selects all buttons that we created in the for loop 
+    var allButtons = document.querySelectorAll("button"); // <- selects all buttons that we created in the for loop
     for (var j = 0; j < data.length; j++) {
-      allButtons[j].textContent = j + 1 + ". " + data[j];
+      allButtons[j + 1].textContent = j + 1 + ". " + data[j];
+
+      var rightOrWrong = document.createElement("p");
+      if (data[j] === questions[index].correctAnswerIndex) {
+        const textNode = document.createTextNode("Correct!");
+        rightOrWrong.appendChild(textNode);
+        rightOrWrong.after(choices);
+       } else {
+         const textNode = document.createTextNode("Wrong!");
+         rightOrWrong.appendChild(textNode);
+         rightOrWrong.after(choices);
+
+        }
+        event.preventDefault();
+       }
     }
-  });
+
+  );
 }
 
 // setTime only when start quiz button is pressed
@@ -64,14 +74,3 @@ button.addEventListener("click", setTimeAndQuestions);
 // else
 //    display incorrect
 //    subtract time
-// console.log(dansQuestions);
-// localStorage.setItem("testItem", "abcdefghijkl");
-
-// WHEN I answer a question
-// THEN I am presented with another question
-// WHEN I answer a question incorrectly
-// THEN time is subtracted from the clock
-// WHEN all questions are answered or the timer reaches 0
-// THEN the game is over
-// WHEN the game is over
-// THEN I can save my initials and score
